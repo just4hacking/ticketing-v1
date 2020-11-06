@@ -4,7 +4,9 @@ import { CustomError } from './custom-error'
 export class RequestValidationError extends CustomError {
   statusCode = 400
   constructor(public errors: ValidationError[]) {
-    super(errors.join(','))
+    super(errors.map(v => v.toString()).join(','))
+
+    Object.setPrototypeOf(this, RequestValidationError.prototype)
   }
 
   serializeErrors() {
