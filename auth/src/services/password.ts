@@ -10,9 +10,16 @@ export class Password {
     return `${buf.toString('hex')}.${salt}`
   }
 
-  static async compare(stored: string, supplied: string) {
-    const [hashedPassword, salt] = stored.split('.')
-    const buf = (await scryptAsync(supplied, salt, 64)) as Buffer
-    return buf.toString('hex') === hashedPassword
+  static async compare(stored: string, supplied: string): Promise<boolean> {
+    try {
+      const [hashedPassword, salt] = stored.split('.')
+      const buf = (await scryptAsync(supplied, salt, 64)) as Buffer
+      return buf.toString('hex') === hashedPassword
+    }
+    catch (exc) {
+      //this is because of strange scrypt out of memory exception
+      console.log(exc)
+      return Password.compare(stored, supplied)
+    }
   }
 }
