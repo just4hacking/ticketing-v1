@@ -1,5 +1,4 @@
 import express from 'express'
-import cookieSession from 'cookie-session'
 
 const router = express.Router()
 
