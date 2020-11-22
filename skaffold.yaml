@@ -34,3 +34,13 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+
+    - image: ankarenkosergey/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    
