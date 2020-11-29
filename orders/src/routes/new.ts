@@ -59,6 +59,7 @@ router.post('/api/orders', requireAuth, rules, validateRequest, async (req: Requ
 
   //publish an event saying that an order was created
   new OrderCreatedPublisher(natsWrapper.client).publish({
+    version: 0,
     id: order.id,
     status: order.status,
     userId: order.userId,
