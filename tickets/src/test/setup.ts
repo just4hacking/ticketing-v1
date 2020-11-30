@@ -16,7 +16,6 @@ jest.mock('../nats-wrapper.ts')
 let mongo: any
 
 beforeAll(async () => {
-  jest.clearAllMocks()
   process.env.JWT_KEY = 'test'
   mongo = new MongoMemoryServer()
   const mongoUri = await mongo.getUri()
@@ -30,6 +29,7 @@ beforeAll(async () => {
 })
 
 beforeEach(async () => {
+  jest.clearAllMocks()
   const collections = await mongoose.connection.db.collections()
   for (let collection of collections) {
     await collection.deleteMany({})

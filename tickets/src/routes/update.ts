@@ -4,7 +4,8 @@ import {
   validateRequest,
   NotFoundError,
   requireAuth,
-  NotAuthorizedError
+  NotAuthorizedError,
+  BadRequestError
 } from '@asatickets/common'
 import { Ticket } from '../models/ticket'
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher'
@@ -28,6 +29,10 @@ router.put('/api/tickets/:id', requireAuth, rules, validateRequest, async (req: 
 
   if (!ticket) {
     throw new NotFoundError()
+  }
+
+  if (ticket.orderId) {
+    throw new BadRequestError('Cannot edit a reserved ticket')
   }
 
   if (ticket.userId !== req.currentUser!.id) {
