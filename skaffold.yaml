@@ -52,4 +52,13 @@ build:
         manual:
           - src: 'src/**/*.js'
             dest: .
+
+    - image: ankarenkosergey/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
     
