@@ -44,7 +44,7 @@ router.post('/api/payments', requireAuth, rules, validateRequest, async (req: Re
     source: token
   })
 
-  res.send({ success: true })
+  res.status(201).send({ success: true })
 })
 
 export { router as createChargeRouter }
