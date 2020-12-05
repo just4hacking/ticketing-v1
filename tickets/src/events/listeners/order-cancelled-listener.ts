@@ -20,7 +20,6 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     if (!ticket) {
       throw new Error('Ticket not found')
     }
-    console.log(ticket.id)
 
     ticket.set({ orderId: undefined })
 
