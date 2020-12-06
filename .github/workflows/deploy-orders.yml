@@ -1,26 +1,26 @@
-name: deploy-client
+name: deploy-orders
 
 on:
   push:
     branches: 
       - master
     paths:
-      - 'client/**'
+      - 'orders/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd client && docker build -t ankarenkosergey/client .
+      - run: cd orders && docker build -t ankarenkosergey/orders .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push ankarenkosergey/client
+      - run: docker push ankarenkosergey/orders
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN_V1 }}
       - run: doctl kubernetes cluster kubeconfig save ticketing-v1
-      - run: kubectl rollout restart deployment client-depl
+      - run: kubectl rollout restart deployment orders-depl
 
