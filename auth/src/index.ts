@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import { app } from './app'
 
 const start = async () => {
-  console.log('Starting up~')
+  console.log('Starting up~!')
 
   
   if (!process.env.JWT_KEY) {
@@ -28,7 +28,7 @@ const start = async () => {
 
   const port = 3000
   app.listen(port, () => {
-    console.log(`listening on ${port} FINAL`)
+    console.log(`listening on ${port} FINAL!`)
   })
 }
 
