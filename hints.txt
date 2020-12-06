@@ -1,5 +1,5 @@
 #generate a secret
-k create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+k create secret generic jwt-secret --from-literal=JWT_KEY=dasfvahjfvahjdvfjgadvfjad
 
 #create a secret for stripe API
 k create secret generic stripe-secret --from-literal=STRIPE_KEY=sk_test_51HueZlKvh1eh80oFPCLVB1fm5ykpVIgXqakKMNMSJTye02CxyzavHTrAV1MXBhZSjKbo1ncI31jNQgpBfuGRGnxM00GOTYDkGS
