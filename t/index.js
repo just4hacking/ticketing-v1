@@ -31,9 +31,21 @@ const doRequest = async () => {
 
   console.log('Request complete');
 };
-
+/*
 (async () => {
   for (let i = 0; i < 400; i++) {
     doRequest();
   }
 })();
+*/
+
+(async () => {
+  try {
+    const { data } = await axios.get('http://www.asa-ticketing.ml/api/users/currentuser')
+    console.log(data)
+  } catch (err) {
+    console.log(err)
+  }
+})()
+
+

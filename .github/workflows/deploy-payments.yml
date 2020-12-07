@@ -2,7 +2,7 @@ name: deploy-payments
 
 on:
   push:
-    branches: 
+    branches:
       - master
     paths:
       - 'payments/**'
@@ -21,6 +21,5 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN_V1 }}
-      - run: doctl kubernetes cluster kubeconfig save ticketing-v1
+      - run: doctl kubernetes cluster kubeconfig save ticketing
       - run: kubectl rollout restart deployment payments-depl
-
